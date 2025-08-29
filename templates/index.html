@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Recommender</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo"><i class="fa-solid fa-film"></i></div>
+    <button id="toggleDarkMode" class="darkmode-btn" title="تغییر حالت تاریک/روشن"><i class="fa-solid fa-moon"></i></button>
+  </nav>
+  <main>
+    <section class="welcome">
+      <h2>به سیستم پیشنهاد فیلم خوش آمدید</h2>
+      <p>فیلم مورد علاقه‌ات رو جستجو کن یا ژانر دلخواهت رو انتخاب کن. همچنین می‌تونی با توضیح کوتاه درباره فیلم مورد علاقه‌ات، پیشنهاد بگیری!</p>
+    </section>
+    <section class="controls">
+      <select id="genreFilter">
+        <option value="">همه ژانرها</option>
+      </select>
+    </section>
+    <form method="post" class="desc-search-form">
+      <input type="text" name="query" placeholder="توضیح فیلم مورد علاقه..." value="{{ query }}" required>
+      <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> جستجو با توضیح</button>
+    </form>
+    <div class="grid" id="gallery"></div>
+    {% if results %}
+    <section class="desc-results">
+      <h3>پیشنهاد بر اساس توضیح شما:</h3>
+      <div class="grid">
+        {% for movie in results %}
+        <div class="card">
+          <img src="{{ movie.Image }}" alt="{{ movie.Name }}">
+          <div class="card-content">
+            <div class="card-title">{{ movie.Name }}</div>
+            <div class="card-genres">{{ movie.Genres | join(', ') }}</div>
+            <div class="card-score"><i class="fa-solid fa-star"></i> {{ movie.Score }}</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+  </main>
+  <div class="toast" id="toast"></div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

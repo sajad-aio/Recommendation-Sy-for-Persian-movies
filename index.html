@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> فیلم‌های پیشنهادی </title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>فیلم‌های پیشنهادی</h1>
+  </header>
+  <main>
+    <section class="controls">
+      <input type="text" id="searchInput" placeholder="جستجوی فیلم..." />
+      <select id="genreFilter">
+        <option value="">همه ژانرها</option>
+      </select>
+      <button id="toggleDarkMode">🌙 حالت تاریک</button>
+    </section>
+    <div class="grid" id="gallery"></div>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
